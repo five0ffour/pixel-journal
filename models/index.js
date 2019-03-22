@@ -1,3 +1,4 @@
 module.exports = {
-  Journal: require("./journal")
+    User: require("./user"),
+    Journal: require("./journal")
 };

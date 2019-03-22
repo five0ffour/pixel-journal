@@ -2,9 +2,9 @@ const router = require("express").Router();
 const journalController = require("../../controllers/journalController");
 
 // Matches with "/api/books"
-router.route("/")
-  .get(journalController.findAll)
-  .post(journalController.create);
+router
+  .get("/", journalController.findAll)
+  .post("/", journalController.create);
 
 // Matches with "/api/books/:id"
 router
