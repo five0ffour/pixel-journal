@@ -58,7 +58,7 @@ class Journal extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>Pixel Journal</h1>
+              <h1>Enter Record</h1>
             </Jumbotron>
             <form>
               <Input name="title" val={this.state.title} placeholder="Title (required)" onChange={this.handleInputChange}/>
