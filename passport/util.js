@@ -5,7 +5,6 @@ const SECRET_KEY = process.env.JWT_SECRETKEY || JWT_SECRETKEY;
 // VerifyToken() - validates the passed token against the secret key
 // format of header/token:   Authorization:  Bearer <access_token>
 function verifyToken(req, res, next) {
-  console.log("VerifyLogin()");
   var bearerHeader = req.headers["authorization"];
   if (typeof bearerHeader !== "undefined") {
     const bearer = bearerHeader.split(" ");
