@@ -3,6 +3,7 @@ import Journal from "./pages/Journal";
 import Nav from "./components/Nav";
 import NoMatch from "./pages/NoMatch";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Login from "./pages/Login";
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
         <Nav/>
           <Switch>
             <Route exact path="/" component={Journal} />
+            <Route path="/login" exact component={Login} />
             <Route exact path="/journal" component={Journal} />
             <Route component={NoMatch} />
           </Switch>      
