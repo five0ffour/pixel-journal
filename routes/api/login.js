@@ -40,14 +40,6 @@ router.route("/auth").post((req, res) => {
   });
 });
 
-// POST("/api/posts) - sample api to protect using JWT, does nothing but act as a template
-// Note the verifyToken call
-router.route("/posts").post(verifyToken, (req, res) => {
-  res.json({
-    message: "Posts created..."
-  });
-});
-
 // POST(/api/login) - authenticate the user, if successful create a JWT for this user
 router.route("/login").post(passport.authenticate("local"), (req, res) => {
   console.log("logged in ", req.body.email);
