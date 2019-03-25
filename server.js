@@ -7,6 +7,9 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const dbConnection = require("./database");
+const cors = require('cors');
+const jwt = require('./_helpers/jwt');
+const errorHandler = require('./_helpers/error-handler');
 
 const PORT = process.env.PORT || 3001;
 const SESSION_KEY = process.env.SESSION_KEY || SESSION_KEY;
@@ -27,7 +30,14 @@ app.use(
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 app.use(express.json());
+
+// use JWT auth to secure the api
+app.use(jwt());
+
+// global error handler
+app.use(errorHandler);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

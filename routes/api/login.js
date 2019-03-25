@@ -2,7 +2,7 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const passport = require("../../passport");
 const { User: db } = require("../../models");
-const verifyToken = require("../../passport/util");
+const verifyToken = require("../../_helpers/token");
 
 const SECRET_KEY = process.env.JWT_SECRETKEY || JWT_SECRETKEY;
 
