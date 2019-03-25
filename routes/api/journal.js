@@ -1,18 +1,18 @@
 const router = require("express").Router();
 const journalController = require("../../controllers/journalController");
-const verifyToken = require("../../passport/util");
+const verifyToken = require("../../_helpers/token");
 
 // Matches with "/api/journal"
 router
   .route("/")
-  .get(verifyToken, journalController.findAll)
-  .post(verifyToken, journalController.create);
+  .get(journalController.findAll)
+  .post(journalController.create);
 
 // Matches with "/api/journal/:id"
 router
   .route("/:id")
-  .get(verifyToken, journalController.findById)
-  .put(verifyToken, journalController.update)
-  .delete(verifyToken, journalController.remove);
+  .get(journalController.findById)
+  .put(journalController.update)
+  .delete(journalController.remove);
 
 module.exports = router;
