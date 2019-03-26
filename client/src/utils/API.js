@@ -28,5 +28,11 @@ export default {
     return axios.post("/api/journal", journalData, {
       headers: { Authorization: "Bearer " + accessString }
     });
-  }
+  },
+  getUser: async function() {
+    const accessString = localStorage.getItem("Bearer");
+    return await axios.get("/api/user", {
+      headers: { Authorization: "Bearer " + accessString }
+    });
+  },
 };

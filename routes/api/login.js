@@ -20,4 +20,10 @@ router.route("/login").post(passport.authenticate("local"), (req, res, next) => 
   return (res.json(req.user));
 });
 
-module.exports = router;
+router.route("/logout").post((req, res, next) => {
+    console.log("logging out ", req.body.username);
+    // TODO: Expire the cache entry
+    return (res.json({}));
+  });
+  
+  module.exports = router;

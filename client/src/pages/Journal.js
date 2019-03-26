@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import Jumbotron from "../components/Jumbotron";
 import DeleteBtn from "../components/DeleteBtn";
 import { Col, Row, Container } from "../components/Grid";
@@ -10,85 +11,95 @@ class Journal extends Component {
   // Initialize this.state.journal as an empty array
   state = {
     journal: [],
-    title: "",
+    title: ""
   };
 
   // Add code here to get journal entries from the database and save them to this.state.journal
-   componentDidMount = () => {
-     
+  componentDidMount = () => {
     this.loadJournal();
+  };
 
-  }
-
-  handleInputChange = (event) => {
+  handleInputChange = event => {
     // event.target.name:   name of the field
     // event.target.value:  values entered
-    this.setState ({
+    this.setState({
       [event.target.name]: event.target.value
     });
-  }
+  };
 
-  handleFormSubmit = (event) => {
-    event.preventDefault();  
+  handleFormSubmit = event => {
+    event.preventDefault();
     API.saveJournal({
-      title: this.state.title,
+      title: this.state.title
     })
       .then(() => {
-        this.loadJournal()
+        this.loadJournal();
       })
       .catch(err => console.log(err));
-  }
+  };
 
   loadJournal = () => {
-    API.getJournal().then((res) => {
+    API.getJournal().then(res => {
       console.log(res);
-      this.setState({journal : res.data});
+      this.setState({ journal: res.data });
     });
-  }
+  };
 
-  handleDelete = (id) => {
+  handleDelete = id => {
     API.deleteJournalEntry(id).then(() => {
-      this.loadJournal()
+      this.loadJournal();
     });
-  }
+  };
 
   render() {
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>Enter Record</h1>
-            </Jumbotron>
-            <form>
-              <Input name="title" val={this.state.title} placeholder="Title (required)" onChange={this.handleInputChange}/>
-              <FormBtn onClick={this.handleFormSubmit}>Submit Entry</FormBtn>
-            </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Journal Entries</h1>
-            </Jumbotron>
-            {this.state.journal.length ? (
-              <List>
-                {this.state.journal.map(journal => (
-                  <ListItem key={journal._id}>
-                    <a href={"/journal/" + journal._id}>
-                      <strong>
-                        {journal.title}
-                      </strong>
-                    </a>
-                    <DeleteBtn onClick={() => {this.handleDelete(journal._id)}}/>
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
-        </Row>
-      </Container>
-    );
+    if (!this.props.loggedIn) {
+        console.log("Home page - Login required");
+        return <div>Login Required</div>
+    } else {
+      return (
+        <Container fluid>
+          <Row>
+            <Col size="md-6">
+              <Jumbotron>
+                <h1>Enter Record</h1>
+              </Jumbotron>
+              <form>
+                <Input
+                  name="title"
+                  val={this.state.title}
+                  placeholder="Title (required)"
+                  onChange={this.handleInputChange}
+                />
+                <FormBtn onClick={this.handleFormSubmit}>Submit Entry</FormBtn>
+              </form>
+            </Col>
+            <Col size="md-6 sm-12">
+              <Jumbotron>
+                <h1>Journal Entries</h1>
+              </Jumbotron>
+              {this.state.journal.length ? (
+                <List>
+                  {this.state.journal.map(journal => (
+                    <ListItem key={journal._id}>
+                      <a href={"/journal/" + journal._id}>
+                        <strong>{journal.title}</strong>
+                      </a>
+                      <DeleteBtn
+                        onClick={() => {
+                          this.handleDelete(journal._id);
+                        }}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+              ) : (
+                <h3>No Results to Display</h3>
+              )}
+            </Col>
+          </Row>
+        </Container>
+      );
+    }
   }
 }
 

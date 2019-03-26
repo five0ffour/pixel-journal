@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import "./Login.css";
 import axios from "axios";
@@ -55,19 +55,25 @@ export default class Login extends Component {
           console.log("Login success!");
 
           // Store the token
-          localStorage.setItem('Bearer', response.data.token);
+          localStorage.setItem("Bearer", response.data.token);
 
           // Save the access token & redirect
-          this.setState({ token: response.data.token,
-                          redirect : true });
+          this.setState({ token: response.data.token, redirect: true });
+
+          this.props.updateUser({
+            loggedIn: true,
+            username: this.state.username
+          });
         }
       })
       .catch(error => {
         // Record error to console & screen
         console.log("login error: ");
         console.log(error);
-        this.setState({ redirect : false,
-                        error: "Failed to match user id and password" });
+        this.setState({
+          redirect: false,
+          error: "Failed to match user id and password"
+        });
       });
   };
 
