@@ -8,8 +8,8 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const dbConnection = require("./database");
 const cors = require('cors');
-const jwt = require('./_helpers/jwt');
-const errorHandler = require('./_helpers/error-handler');
+const jwt = require('./helpers/jwt');
+const errorHandler = require('./helpers/error-handler');
 
 const PORT = process.env.PORT || 3001;
 const SESSION_KEY = process.env.SESSION_KEY || SESSION_KEY;

@@ -1,9 +1,10 @@
 
 const router = require("express").Router();
 const userCtlr = require ("../../controllers/userController");
+const passport = require("../../passport");
 
 // routes
-router.post('/authenticate', userCtlr.authenticate);
+router.post('/authenticate',userCtlr.authenticate);  
 router.post('/register', userCtlr.register);
 router.get('/', userCtlr.getAll);
 router.get('/current', userCtlr.getCurrent);

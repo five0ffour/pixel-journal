@@ -14,9 +14,8 @@ module.exports = {
 };
 
 async function authenticate({ username, password }) {
+    console.log("userService.authenticate() - ", username);
   const user = await db.User.findOne({ username });
-  console.log("password() - ", password);
-  console.log("user.hash - ", user.hash);
   if (user && user.checkPassword(password)) {
     const { hash, ...userWithoutHash } = user.toObject();
     const token = jwt.sign({ sub: user.id }, secret);
@@ -24,7 +23,7 @@ async function authenticate({ username, password }) {
       ...userWithoutHash,
       token
     };
-  } else {
+   } else {
     console.log("authenticate() - user not found");
     console.log(user);
   }
@@ -49,7 +48,6 @@ async function create(userParam) {
   // password is hashed in model middleware on save to database
   if (userParam.password) {
     user.hash = userParam.password;
-
   }
 
   // save user
@@ -68,7 +66,7 @@ async function update(id, userParam) {
     throw 'Username "' + userParam.username + '" is already taken';
   }
 
-  // hash password 
+  // hash password
   // (note: model middleware hashes password on save, it is not called for updates, hence done here)
   if (userParam.password) {
     userParam.hash = user.hashPassword(userParam.password);

@@ -43,7 +43,7 @@ export default class Login extends Component {
 
     // authenticate the login using the username & password here
     axios
-      .post("/api/login", {
+      .post("/api/user/authenticate", {
         username: this.state.username,
         password: this.state.password
       })

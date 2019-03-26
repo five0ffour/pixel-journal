@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const journalController = require("../../controllers/journalController");
-const verifyToken = require("../../_helpers/token");
+const verifyToken = require("../../helpers/token");
 
 // Matches with "/api/journal"
 router
