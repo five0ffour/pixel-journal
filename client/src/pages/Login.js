@@ -54,6 +54,9 @@ export default class Login extends Component {
           // Success!  Save the token
           console.log("Login success!");
 
+          // Store the token
+          localStorage.setItem('Bearer', response.data.token);
+
           // Save the access token & redirect
           this.setState({ token: response.data.token,
                           redirect : true });
