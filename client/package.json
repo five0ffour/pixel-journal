@@ -1,6 +1,7 @@
 {
-  "name": "mern",
+  "name": "pixel-journal",
   "version": "0.1.0",
+  "description": "Pixel Journal React app",
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
