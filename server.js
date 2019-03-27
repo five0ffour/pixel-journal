@@ -7,9 +7,9 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const dbConnection = require("./database");
-const cors = require('cors');
-const jwt = require('./helpers/jwt');
-const errorHandler = require('./helpers/error-handler');
+const cors = require("cors");
+const jwt = require("./helpers/jwt");
+const errorHandler = require("./helpers/error-handler");
 
 const PORT = process.env.PORT || 3001;
 const SESSION_KEY = process.env.SESSION_KEY || "not so secret key";
@@ -18,14 +18,14 @@ const app = express();
 
 // Sessions
 app.use(
-    session({
-      secret: SESSION_KEY, //random string to make the hash that is generated secure
-      store: new MongoStore({ mongooseConnection: dbConnection }),
-      resave: false, //required
-      saveUninitialized: false, //required
-    })
-  );
-  
+  session({
+    secret: SESSION_KEY, //random string to make the hash that is generated secure
+    store: new MongoStore({ mongooseConnection: dbConnection }),
+    resave: false, //required
+    saveUninitialized: false //required
+  })
+);
+
 // Define middleware here
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));

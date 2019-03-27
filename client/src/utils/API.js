@@ -34,5 +34,5 @@ export default {
     return await axios.get("/api/user", {
       headers: { Authorization: "Bearer " + accessString }
     });
-  },
+  }
 };

@@ -10,7 +10,7 @@ const userSchema = new Schema({
   email: { type: String },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  createdDate: { type: Date, default: Date.now },
+  createdDate: { type: Date, default: Date.now }
 });
 
 // Define schema methods
@@ -23,7 +23,7 @@ userSchema.methods = {
   // hashPassowrd() - called pre-save to encrypt our password before storing
   hashPassword: plainTextPassword => {
     return bcrypt.hashSync(plainTextPassword, 10);
-  },
+  }
 };
 
 // "Save Hook" - Called by Passport before persisting a new user to encrypt the password
@@ -39,10 +39,10 @@ userSchema.pre("save", function(next) {
   }
 });
 
-userSchema.set('toJSON', { virtuals: true });
+userSchema.set("toJSON", { virtuals: true });
 
 const User = mongoose.model("User", userSchema, "user");
 
 module.exports = {
-  User: User,
+  User: User
 };

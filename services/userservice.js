@@ -14,7 +14,7 @@ module.exports = {
 };
 
 async function authenticate({ username, password }) {
-    console.log("userService.authenticate() - ", username);
+  console.log("userService.authenticate() - ", username);
   const user = await db.User.findOne({ username });
   if (user && user.checkPassword(password)) {
     const { hash, ...userWithoutHash } = user.toObject();
@@ -23,7 +23,7 @@ async function authenticate({ username, password }) {
       ...userWithoutHash,
       token
     };
-   } else {
+  } else {
     console.log("authenticate() - user not found");
     console.log(user);
   }
@@ -58,7 +58,9 @@ async function update(id, userParam) {
   const user = await db.User.findById(id);
 
   // validate
-  if (!user) throw "User not found";
+  if (!user) {
+    throw "User not found";
+  }
   if (
     user.username !== userParam.username &&
     (await User.findOne({ username: userParam.username }))
