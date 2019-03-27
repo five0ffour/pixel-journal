@@ -3,7 +3,7 @@ const userService = require("../services/userservice");
 // Defining methods for the userController
 module.exports = {
   authenticate: function authenticate(req, res, next) {
-      console.log("userController.authenticate()");
+    console.log("userController.authenticate()");
     userService
       .authenticate(req.body)
       .then(user =>
@@ -18,7 +18,7 @@ module.exports = {
 
   register: function register(req, res, next) {
     console.log("userController.register()");
-        userService
+    userService
       .create(req.body)
       .then(() => res.json({}))
       .catch(err => next(err));

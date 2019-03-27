@@ -85,8 +85,7 @@ const journalSeed = [
   }
 ];
 
-db.Journal
-  .remove({})
+db.Journal.remove({})
   .then(() => db.Journal.collection.insertMany(journalSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
