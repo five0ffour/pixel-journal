@@ -17,6 +17,7 @@ class Navbar extends Component {
       .then(response => {
         console.log("Logged out");
         console.log(response.data);
+        localStorage.removeItem("Bearer");
         this.props.updateUser({
             loggedIn: false,
             username: null
