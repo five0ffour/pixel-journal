@@ -12,7 +12,7 @@ const jwt = require('./helpers/jwt');
 const errorHandler = require('./helpers/error-handler');
 
 const PORT = process.env.PORT || 3001;
-const SESSION_KEY = process.env.SESSION_KEY || SESSION_KEY;
+const SESSION_KEY = process.env.SESSION_KEY || "not so secret key";
 
 const app = express();
 
