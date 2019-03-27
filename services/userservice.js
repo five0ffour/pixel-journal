@@ -2,7 +2,7 @@
 const bcrypt = require("bcryptjs");
 const { User: db } = require("../models");
 
-const secret = process.env.JWT_SECRETKEY || JWT_SECRETKEY;
+const secret = process.env.JWT_SECRETKEY || "not so secret key";
 
 module.exports = {
   authenticate,

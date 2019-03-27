@@ -5,7 +5,7 @@ const { User: db } = require("../../models");
 const verifyToken = require("../../helpers/token");
 const userCtlr = require ("../../controllers/userController");
 
-const SECRET_KEY = process.env.JWT_SECRETKEY || JWT_SECRETKEY;
+const SECRET_KEY = process.env.JWT_SECRETKEY || "not so secret key";
 
 // POST("/api/auth") -- register a new user in the database if it is not a duplicate
 // This post should remain open so we can add users freely, should not be secured by JWT or user authentication
