@@ -54,7 +54,6 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          {/* <Nav /> */}
           <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
           <Switch>
             <Route
