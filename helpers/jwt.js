@@ -21,9 +21,7 @@ function jwt() {
       "/api/user/register",
       "/api/login",
       "/api/auth",
-      "/api/logout",
-      "/login",
-      "/"
+      "/api/logout"
     ]
   });
 }
