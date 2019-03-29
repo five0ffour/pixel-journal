@@ -34,7 +34,7 @@ app.use(cors());
 app.use(express.json());
 
 // use JWT auth to secure the api
-app.use(jwt());
+// app.use(jwt());
 
 // global error handler
 app.use(errorHandler);
