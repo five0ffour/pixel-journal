@@ -50,6 +50,14 @@ async function create(userParam) {
     user.hash = userParam.password;
   }
 
+  if (userParam.firstName) {
+    user.firstName = userParam.firstName;
+  }
+
+  if (userParam.lastName) {
+    user.lastName = userParam.lastName;
+  }
+
   // save user
   await user.save();
 }
