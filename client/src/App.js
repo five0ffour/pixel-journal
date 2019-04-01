@@ -61,7 +61,12 @@ class App extends Component {
               path="/"
               render={() => <Journal loggedIn={this.state.loggedIn} />}
             />
-            <Route path="/signup" render={() => <Signup />} />
+
+            <Route
+              path="/signup"
+              render={() => <Signup updateUser={this.updateUser} />}
+            />
+
             <Route
               path="/login"
               render={() => <Login updateUser={this.updateUser} />}
@@ -71,6 +76,7 @@ class App extends Component {
               path="/journal"
               render={() => <Journal loggedIn={this.state.loggedIn} />}
             />
+            
             <Route component={NoMatch} />
           </Switch>
         </div>

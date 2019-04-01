@@ -7,6 +7,8 @@ class Signup extends Component {
     this.state = {
       username: "",
       password: "",
+      lastName: "",
+      firstName: "",
       confirmPassword: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,8 +26,10 @@ class Signup extends Component {
 
     //request to server to add a new username/password
     axios
-      .post("/user/", {
+      .post("/api/user/register", {
         username: this.state.username,
+        lastName: this.state.lastName,
+        firstName: this.state.firstName,
         password: this.state.password
       })
       .then(response => {
@@ -69,6 +73,45 @@ class Signup extends Component {
               />
             </div>
           </div>
+
+          <div className="form-group">
+            <div className="col-1 col-ml-auto">
+              <label className="form-label" htmlFor="firstName">
+                Fisrt Name
+              </label>
+            </div>
+            <div className="col-3 col-mr-auto">
+              <input
+                className="form-input"
+                type="text"
+                id="firstName"
+                name="firstName"
+                placeholder="first name"
+                value={this.state.firstName}
+                onChange={this.handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div className="col-1 col-ml-auto">
+              <label className="form-label" htmlFor="lastName">
+                Last Name
+              </label>
+            </div>
+            <div className="col-3 col-mr-auto">
+              <input
+                className="form-input"
+                type="text"
+                id="lastName"
+                name="lastName"
+                placeholder="last name"
+                value={this.state.lastName}
+                onChange={this.handleChange}
+              />
+            </div>
+          </div>
+
           <div className="form-group">
             <div className="col-1 col-ml-auto">
               <label className="form-label" htmlFor="password">
